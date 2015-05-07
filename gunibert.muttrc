@@ -1,0 +1,11 @@
+
+set realname = "Günther Wutz"
+set from = "info@gunibert.de"
+
+set mbox_type = Maildir
+set folder = ~/Dokumente/Mails/
+set spoolfile = "+gunibert/INBOX"
+set record = "+gunibert/Sent"
+set postponed = "+gunibert/Drafts"
+
+source ~/.mutt/mailboxes

@@ -1,0 +1,47 @@
+set charset="utf-8"
+set send_charset="us-ascii:iso-8859-1:iso-8859-15:utf-8"
+set locale="C"
+set sendmail = "/usr/bin/msmtp"
+set realname = "Günther Wutz"
+set from     = "info@gunibert.de"
+alternates "(info@gunibert.de)|(guenther.wutz@st.oth-regensburg.de)"
+set reverse_name
+set use_from
+
+folder-hook ~/Dokumente/Mails/gunibert/INBOX 'source ~/.mutt/gunibert.muttrc'
+folder-hook ~/Dokumente/Mails/student/INBOX 'source ~/.mutt/student.muttrc'
+
+macro index wi "<change-folder>~/Dokumente/Mails/gunibert/INBOX<enter>"
+macro index hi "<change-folder>~/Dokumente/Mails/student/INBOX<enter>"
+
+# Maildir
+set mbox_type = Maildir
+set folder = "/home/gunibert/Dokumente/Mails/"
+set spoolfile = "+gunibert/INBOX"
+set record = "+gunibert/Sent"
+set postponed = "+gunibert/Drafts"
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+
+source ~/.mutt/mailboxes
+
+set editor = "vim -c 'set spell spelllang=de,en' +Goyo"
+
+source ~/.mutt/mutt-theme.muttrc
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+macro pager \cl <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+set sort="threads"
+set strict_threads="yes"
+set sort_browser="reverse-date"
+set sort_aux="last-date-received"
+unset collapse_unread
+
+bind index - collapse-thread
+bind index _ collapse-all
+set index_format="%4C %Z %D %-15.15L (%4l) %s"
+set pager_index_lines=15
+set query_command= "abook --mutt-query '%s'"
+macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
