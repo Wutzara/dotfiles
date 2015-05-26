@@ -1,0 +1,20 @@
+= Personal Wiki =
+
+== 2015 ==
+[[ToDo]]
+
+=== Leben ===
+[[Unclutter]]
+
+=== SAL ===
+  [[Flüsse]]
+  [[Uebung 4]]
+  
+=== FKS ===
+  [[BGP-Protokoll]]
+  
+=== MST ===
+  - [[Vorgehensmodelle]]
+  
+=== Linux ===
+  - [[NetworkManagerCLI]]

@@ -1,0 +1,169 @@
+" vim: set foldmethod=marker foldlevel=0:
+" Airline {{{
+let g:airline_powerline_fonts = 1
+" }}}
+
+" Scratch {{{
+
+command! ScratchToggle call ScratchToggle()
+
+function! ScratchToggle()
+    if exists("w:is_scratch_window")
+        unlet w:is_scratch_window
+        exec "q"
+    else
+        exec "normal! :Scratch\<cr>\<C-W>L"
+        let w:is_scratch_window = 1
+    endif
+endfunction
+
+nnoremap <silent> <leader><tab> :ScratchToggle<cr>
+
+" }}}
+
+" Syntastic {{{
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 0
+let g:syntastic_java_checker = 'javac'
+let g:syntastic_mode_map = {
+            \ "mode": "active",
+            \ "active_filetypes": [],
+            \ "passive_filetypes": ['java', 'html', 'rst']
+            \ }
+let g:syntastic_stl_format = '[%E{%e Errors}%B{, }%W{%w Warnings}]'
+let g:syntastic_jsl_conf = '$HOME/.vim/jsl.conf'
+
+nnoremap <leader>C :SyntasticCheck<cr>
+" }}}
+
+" YouCompleteMe {{{
+let g:ycm_register_as_syntastic_checker = 1
+let g:Show_diagnostics_ui = 1
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 1
+" }}}
+
+" Ctrl-P {{{
+
+let g:ctrlp_dont_split = 'NERD_tree_2'
+let g:ctrlp_jump_to_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_split_window = 0
+let g:ctrlp_max_height = 20
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_buftag_ctags_bin = 'anjutag-tags'
+
+let g:ctrlp_map = '<leader>,'
+nnoremap <leader>. :CtrlPBuffer<cr>
+nnoremap <leader>E :CtrlP ../
+nnoremap <leader>m :CtrlPTag<cr>
+
+let g:ctrlp_prompt_mappings = {
+\ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
+\ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
+\ 'PrtHistory(-1)':       ['<c-n>'],
+\ 'PrtHistory(1)':        ['<c-p>'],
+\ 'ToggleFocus()':        ['<c-tab>'],
+\ }
+
+let ctrlp_filter_greps = "".
+    \ "egrep -iv '\\.(" .
+    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
+    \ ")$' | " .
+    \ "egrep -v '^(\\./)?(" .
+    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|docs/build/" .
+    \ ")'"
+
+let my_ctrlp_user_command = "" .
+    \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
+    \ ctrlp_filter_greps
+
+let my_ctrlp_git_command = "" .
+    \ "cd %s && git ls-files --exclude-standard -co | " .
+    \ ctrlp_filter_greps
+
+let g:ctrlp_open_new_file = 'r'
+" }}}
+
+" DelimitMate {{{
+let delimitMate_expand_cr = 1
+" }}}
+
+" easytags {{{
+let g:easytags_cmd = '/usr/bin/anjuta-tags'
+let g:easytags_by_filetype = '~/.tags/'
+" }}}
+
+" Tagbar {{{
+let g:tagbar_ctags_bin = 'anjuta-tags'
+nmap <F8> :TagbarToggle<cr>
+" }}}
+
+" Goyo {{{
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+autocmd User GoyoEnter call <SID>goyo_enter()
+autocmd User GoyoLeave call <SID>goyo_leave()
+" }}}
+
+" UltiSnips {{{
+let g:UltiSnipsExpandTrigger="^"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" }}}
+
+" Easy Align {{{
+vmap <Enter> <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" }}}
+
+" Ledger {{{
+let g:ledger_separator_col = 45
+let g:ledger_separator_string = ','
+let g:ledger_maxwidth = 80
+au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
+" }}}
+"
+" VimWiki {{{
+let g:vimwiki_list = [{'path': '~/Dokumente/wiki/'}]
+let g:vimwiki_folding=1
+" }}}
+
+" Calendar {{{
+let g:calendar_monday = 1
+" }}}
+"
+" NotMuch {{{
+let g:notmuch_folders = [
+    \ [ 'new', 'tag:inbox and tag:unread'],
+    \ [ 'inbox', 'tag:inbox' ],
+    \ [ 'unread', 'tag:unread' ],
+    \ [ 'to-do', 'tag:todo' ],
+    \ [ 'vala', 'tag:vala' ],
+    \ [ 'studium', 'tag:studium'],
+    \ ]
+" }}}

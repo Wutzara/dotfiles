@@ -1,0 +1,64 @@
+{
+  "www.facebook.com": {
+    "id": "login_form",
+    "form": {
+      "email": {
+        "id": "email",
+        "value": "facebook@gunibert.de"
+      },
+      "pass": {
+        "id": "pass",
+        "value": "2478%wug!"
+      },
+      "persistent": {
+        "id": "persist_box",
+        "value": "1"
+      }
+    },
+    "hasIds": true,
+    "autosubmit": true
+  },
+  "www.reddit.com": {
+    "id": "login_login-main",
+    "form": {
+      "user": {
+        "value": "guenther_mit_haar"
+      },
+      "passwd": {
+        "value": "2478%wug!"
+      },
+      "rem": {
+        "id": "rem-login-main",
+        "value": "on"
+      }
+    },
+    "hasIds": false,
+    "autosubmit": true
+  },
+  "github.com": {
+    "id": null,
+    "form": {
+      "login": {
+        "id": "login_field",
+        "value": "github@gunibert.de"
+      },
+      "password": {
+        "id": "password",
+        "value": "2478wug"
+      }
+    },
+    "hasIds": true,
+    "autosubmit": true
+  },
+  "elearning.uni-regensburg.de": {
+    "id": "quicksearch-form",
+    "form": {
+      "search": {
+        "id": "quicksearch-input",
+        "value": "GRIPS-Suche"
+      }
+    },
+    "hasIds": true,
+    "autosubmit": true
+  }
+}

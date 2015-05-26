@@ -1,0 +1,37 @@
+
+
+= 1100h=
+Finanzen in Ordnung bringen und Haushaltskasse anlegen
+
+= 1130h=
+Haushaltskasse ist angelegt, experimentiere grad noch mit verschiedenen
+Themes in Vim rum. Will grundsätzlich auf terminalbasiertes vim umsteigen.
+
+= 1200h=
+update grade das N900 - mal schaun wie weit das noch geht
+
+= 1230h=
+probier jetzt yappari auf dem n900 aus - das soll nen Whatsapp Client sein
+
+= 1300h=
+Brief für Vermieter
+
+= 1600h=
+Aufgabe 2b) Aufgabeblatt 4 - Fibonacci Heap Höhe O(logn) zeigen. Meine Annahme
+ist, dass man es durch ein konstruiertes Beispiel widerlegen muss. Schließlich
+kann man ein Beispiel erzeugen, in dem man eine Verkettung von Nodes erreicht
+welche höher als logn ist.
+
+= 1830h=
+Aufräumen meines USB Sticks
+
+= 1900h=
+aufräumen fertig!
+
+= 2000h=
+versuche gerade die maximale Höhe von fibonacci-heaps zu beweisen. Allerdings
+bekomm ich generell - ohne konstruiertes Beispiel bereits nicht auf die 
+logn höhe
+
+= 2030h=
+

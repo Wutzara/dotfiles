@@ -1,0 +1,32 @@
+= Fr 22. Mai =
+
+= 0800h=
+HSC muss heute wohl ohne mich wieder stattfinden. Konnte mich nicht aufraffen
+um zur Vorlesung zu gehen.
+
+= 0900h=
+Starte jetzt mit der HSC Übung
+
+= 1030h=
+Ich versuche gerade in VHDL eine Testbench für meinen Multiplexer zu schreiben.
+Ideal wäre, wenn ich die Files voneinander trennen könnte. Die bisherigen
+Beispiele im Netz würden alle vorsehen, dass ich das zu testende Objekt direkt
+im Testbench programmiere - das würde aber die Modularität für die Uni zunichte
+machen. Ich will das Zeug ja nicht zweimal schreiben.
+
+= 1100h=
+Das Testen mit einer Testbench funktioniert hervorragend. Die Ergebnisse kann
+man unter file://~/Studium/HSC/vhdl/multiplexer betrachten
+
+= 1130h=
+Der Multiplexer funktioniert nun, jetzt erstmal kleine Pause und dann mach ich
+mich vermutlich an die nächste Aufgabe.
+
+= 1200h=
+Hab für Mittwoch um 7-8 Uhr einen Besichtigungstermin für meine Wohnung
+ausgemacht. Der Herr Jonathan Klimek aus Bremen (0159/010121097) würde
+die Wohnung noch gerne anschauen
+
+= 1300h=
+bin gerade dabei, das Schieberegister (aufgabe 3 auf dem zweiten Übungsblatt
+zu VHDL) zu machen. Das Projekt befindet sich unter file://~/Studium/HSC/shiftregister

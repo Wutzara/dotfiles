@@ -1,0 +1,105 @@
+#! /bin/sh
+#
+# Example panel for LemonBoy's bar
+
+battery() {
+  BATC=/sys/class/power_supply/BAT0/capacity
+
+  sed -n p $BATC
+}
+
+cpuload() {
+  LINE=`ps -eo pcpu |grep -vE '\s*(0.0|%CPU)' |sed -n '1h;$!H;$g;s/\n/ +/gp'`
+  bc <<< $LINE
+}
+
+memory() {
+  USED=$(free -m | awk 'NR == 2 {gsub(/%/,""); print $3}')
+  USED+="MB"
+  output="%{F$COLOR_RED} %{F-}$USED"
+  echo $output
+}
+
+temperature() {
+  temp=$((`sensors | grep "Physical id 0" | cut -d'+' -f2 | head -c2`))
+
+  output="%{F$COLOR_RED} %{F-}$temp°"
+  echo $output
+}
+
+mailsgunibert() {
+  mails=`find ~/Dokumente/Mails/gunibert/INBOX/cur/ -type f | grep -vE ',[^,]*S[^,]*$' | wc -l`
+  output="%{F$COLOR_RED} %{F-}$mails"
+  echo $output
+}
+. ~/.config/bspwm/newpanel/panel_colors
+
+num_mon=$(bspc query -M | wc -l)
+
+while read -r line ; do
+  case $line in
+    S*)
+      # clock output
+      da=$(date "+%d.%m.%Y") 
+      sys_infos="$(mailsgunibert) $(temperature) | $(memory) | %{F$COLOR_RED} %{F$COLOR_FOREGROUND}$(cpuload) | %{F$COLOR_RED}%{F$COLOR_FOREGROUND} $(battery) | %{F$COLOR_RED} %{F$COLOR_FOREGROUND}${da} ${line#?} %{B-}%{F-}"
+      ;;
+    T*)
+      # xtitle output
+      title="%{F$COLOR_FOREGROUND} ${line#?} %{B-}%{F-}"
+      ;;
+    W*)
+      # bspwm internal state
+      wm_infos=""
+      IFS=':'
+      set -- ${line#?}
+      while [ $# -gt 0 ] ; do
+        item=$1
+        name=${item#?}
+        case $item in
+          M*)
+            # active monitor
+            if [ $num_mon -gt 1 ] ; then
+              wm_infos="$wm_infos %{F$COLOR_FOREGROUND} ${name} %{B-}%{F-}  "
+            fi
+            ;;
+          m*)
+            # inactive monitor
+            if [ $num_mon -gt 1 ] ; then
+              wm_infos="$wm_infos %{F$COLOR_FOREGROUND} ${name} %{B-}%{F-}  "
+            fi
+            ;;
+          O*)
+            # focused occupied desktop
+            wm_infos="${wm_infos}%{F$COLOR_FOREGROUND}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
+            ;;
+          F*)
+            # focused free desktop
+            wm_infos="${wm_infos}%{F$COLOR_FOREGROUND}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
+            ;;
+          U*)
+            # focused urgent desktop
+            wm_infos="${wm_infos}%{F$COLOR_FOREGROUND}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
+            ;;
+          o*)
+            # occupied desktop
+            wm_infos="${wm_infos}%{F$COLOR_FOREGROUND} ${name} %{B-}%{F-}"
+            ;;
+          f*)
+            # free desktop
+            wm_infos="${wm_infos}%{F$COLOR_FOREGROUND} ${name} %{B-}%{F-}"
+            ;;
+          u*)
+            # urgent desktop
+            wm_infos="${wm_infos}%{F$COLOR_FOREGROUND} ${name} %{B-}%{F-}"
+            ;;
+          L*)
+            # layout
+            wm_infos="$wm_infos  %{F$COLOR_FOREGROUND} ${name} %{B-}%{F-}"
+            ;;
+        esac
+        shift
+      done
+      ;;
+  esac
+  printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${sys_infos}"
+done

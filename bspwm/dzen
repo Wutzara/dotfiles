@@ -1,0 +1,11 @@
+#!/bin/sh
+source $HOME/.config/bspwm/scripts/config.sh
+#"^fg($BG)^bg(#2a2a2a)^i($HOME/.config/bspwm/icons/arrowr.xbm)^bg()^fg()"\
+#"^bg(#2a2a2a) ^ca(1, urxvt)^i($HOME/.config/bspwm/icons/term.xbm)^ca() ^bg()"\
+#"^fg(#2a2a2a)^bg($BG)^i($HOME/.config/bspwm/icons/arrowr.xbm)^bg()^fg()"\
+#" ^ca(1, firefox)^i($HOME/.config/bspwm/icons/fox.xbm)^ca()" \
+
+#echo " ^fg(#101010)^i($HOME/.config/bspwm/bspwm.xbm)^fg() "\
+#	| dzen2 -w 162 -h "$HEIGHT" -p -x 0 -y 0 -bg "$BG" -fg "$FG" -ta l -e 'button3=' -fn "$FONT" &
+
+conky |dzen2 -w 1020 -h "$HEIGHT" -p -x 900 -y 0 -bg "$BG" -fg "$FG" -ta r -e 'button3=' -fn "$FONT" &

@@ -1,0 +1,29 @@
+Do 21. Mai 11:48:20 CEST 2015
+= Notes =
+Artefakte - alles was erzeugt wird
+
+= Journal = 
+Fokus auf Scrum
+Frühere Entwicklungen - ohne Koordination oder Vorgehensmodell. Man nahm an
+Software wäre nur Code (Code + Fix).
+
+Grundsätzlich: 
+  - Analyse (UML -> Use Cases etc) führt zur Systemspezifikation.
+  - Design führt zum Technischem Design. Steht in Wechselwirkung zur Analyse
+    um das System anzupassen (Kostengründe zum Beispiel)
+  - Implementierung & Modultests führt zu Programmcode, Modultests, Testberichte,
+    Code Dokumentation etc.
+  - Test und Integration führt zu lauffähiger SW auf produktionsnaher
+    Umgebung, Integrationstests, Testberichte
+  - Abnahme und Einführung führt zu Abnahmeprotokolle, Testprotokolle,
+    Installationsanleitungen etc.
+  - Betrieb und Wartung
+
+Wasserfallmodell bildet das Grundsätzliche direkt ab. Beispiel ITPM bei BWM
+
+Extreme Programming (XP) - Kunde vor Ort fand ich interessant. Ein Verteter
+des Kunden soll im Büro des Entwicklungsteams sitzen.
+
+
+
+= Summary =

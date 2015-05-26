@@ -1,0 +1,6 @@
+set adblocker-filterlist /home/gunibert/.config/dwb/adblock_lists
+toggle enable-private-browsing
+help
+?
+adblock_reload_rules
+exit

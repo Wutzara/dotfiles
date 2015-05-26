@@ -1,0 +1,52 @@
+#! /bin/bash
+
+cd $(dirname $0)
+source  $(dirname $0)/profile
+
+if [ $(pgrep -cx panel) -gt 1 ] ; then
+  printf "%s\n" "The panel is already running."
+  while [[ $(pgrep -c "panel") != 0 ]]
+  do
+    pkill -n -9 "panel"
+  done
+fi
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+music() {
+  if [ -n "`mpc | grep "playing"`" ]; then
+    if [ -z "$(mpc -f %artist% | sed -n '1p')" ]; then
+        echo -n "%{B$GREEN} $(mpc -f %file% | sed -n '1p' | cut -d '.' -f 1) %{B-}"
+    else
+        echo -n "%{B$CYAN}%{F$BG} $(mpc -f %artist% | sed -n '1p') %{B-}%{F-} "
+        echo -n "%{B$YELLOW}%{F$BG} $(mpc -f %album% | sed -n '1p') %{B-}%{F-} "
+        echo -n "%{B$BLUE}%{F$BG} $(mpc -f %title% | sed -n '1p') %{B-}%{F-} "
+    fi
+    # if nothing is playing, display 'paused'
+  else
+    echo -n "%{B$WHITE2}%{F$BG} Paused %{B-}%{F-}"
+  fi
+}
+
+volume () {
+    VOLUME=$(ponymix get-volume)
+    echo -n "%{B$YELLOW2}%{F$BG} $VOLUME %{B-}%{F-}"
+}
+
+clock() {
+  DATE="$(date +"%A, %B %eth %I:%M %p" | sed "s/  / /")"
+  echo "%{B$MAGENTA}%{F$BG} $DATE %{B-}%{F-}"
+}
+
+bspc control --subscribe > "$PANEL_FIFO" &
+while true ; do
+    echo "S" $(music) $(clock) > "$PANEL_FIFO" &
+    sleep 0.5s
+done &
+
+cat $PANEL_FIFO | $XDG_CONFIG_HOME/bspwm/panel/panel_bar | lemonbar -g $PANEL_GEOMETRY -B $BG -F $FG -f "$FONT1","$FONT2" &
+
+wait

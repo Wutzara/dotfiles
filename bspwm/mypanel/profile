@@ -1,0 +1,39 @@
+#settings to be used in bar files.
+PANEL_FIFO=/tmp/panel-fifo
+PANEL_WIDTH=$(sres -W)
+PANEL_HEIGHT=24
+X=0
+Y=0
+PANEL_GEOMETRY="${PANEL_WIDTH}x${PANEL_HEIGHT}+${X}+${Y}"
+
+FONT1="-*-creep-regular-*-*--16-*-*-*-*-*-*-1"
+FONT2="-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+
+getXresColor() {
+     echo -n "$( xrdb -query | grep "\*$1:" | grep -oE "#[a-zA-Z0-9]{6}" | cut -c 2- )";
+}
+
+BG="#FF$(getXresColor background)"
+FG="#FF$(getXresColor foreground)"
+
+BLACK="#FF$(getXresColor color0)"
+BLACK2="#FF$(getXresColor color8)"
+RED="#FF$(getXresColor color1)"
+RED2="#FF$(getXresColor color9)"
+GREEN="#FF$(getXresColor color2)"
+GREEN2="#FF$(getXresColor color10)"
+YELLOW="#FF$(getXresColor color3)"
+YELLOW2="#FF$(getXresColor color11)"
+BLUE="#FF$(getXresColor color4)"
+BLUE2="#FF$(getXresColor color12)"
+MAGENTA="#FF$(getXresColor color5)"
+MAGENTA2="#FF$(getXresColor color13)"
+CYAN="#FF$(getXresColor color6)"
+CYAN2="#FF$(getXresColor color14)"
+WHITE="#FF$(getXresColor color7)"
+WHITE2="#FF$(getXresColor color15)"
+
+occupied="%{B#ff333333}%{F$BLACK}  %{F-}%{B-}"
+free="    "
+active="%{B#ff333333}%{F$YELLOW2}  %{F-}%{B-}"
+urgent="%{B#ff333333}%{F$GREEN}  %{F-}%{B-}"

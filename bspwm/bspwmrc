@@ -1,0 +1,30 @@
+#! /bin/sh
+
+bspc config border_width        3
+bspc config window_gap         10
+bspc config top_padding        26
+bscp config right_padding      6
+bscp config left_padding       6
+
+bspc config normal_border_color         "#9a9a9a"
+bspc config focused_border_color        "#ffffff"
+bspc config active_border_color         "#ffffff"
+bspc config presel_border_color         "#ff5879"
+
+bspc config split_ratio         0.50
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
+bspc config focus_by_distance   true
+
+bspc monitor eDP1 -d web terminal gvim other
+bspc monitor VGA1 -d web terminal gvim other
+
+bspc rule -a Gimp desktop=^8 follow=on floating=on
+bspc rule -a Chromium desktop=^2
+bspc rule -a mplayer2 floating=on
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Gvim desktop=^3 follow=on
+
+#~/.config/bspwm/oldpanel/panel &
+~/.bspwm_auto &

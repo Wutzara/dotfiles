@@ -1,0 +1,137 @@
+
+" ============================================================================
+" BASIC SETTINGS {{{
+" ============================================================================
+
+colorscheme molokai
+"set background=light
+"colorscheme Tomorrow-Night
+let mapleader=","
+let maplocalleader="-"
+nmap <leader>w :w!<cr>
+
+inoremap jj <esc>
+
+set nu
+set autoindent
+set smartindent
+set lazyredraw
+set laststatus=2
+set showcmd
+set visualbell
+set backspace=indent,eol,start
+set timeoutlen=500
+set whichwrap=b,s
+set shortmess=aIT
+set hlsearch " CTRL-L / CTRL-R W
+set incsearch
+set hidden
+set ignorecase smartcase
+set wildmenu
+set tabstop=2
+set shiftwidth=2
+set expandtab smarttab
+set scrolloff=5
+set encoding=utf-8
+set list
+set listchars=tab:▸\ ,eol:¬
+set virtualedit=block
+set nojoinspaces
+set diffopt=filler,vertical
+set autoread
+set clipboard=unnamed
+set foldlevelstart=99
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+set completeopt=menuone,preview,longest
+set nocursorline
+
+set formatoptions+=1
+if has('patch-7.3.541')
+  set formatoptions+=j
+endif
+if has('patch-7.4.338')
+  let &showbreak = '↳ '
+  set breakindent
+  set breakindentopt=sbr
+endif
+
+if has("gui_running")
+  set lines=999 columns=999
+endif
+set history=700
+set pastetoggle=<F9>
+set modelines=2
+set synmaxcol=1000
+
+" ctags
+set tags=.tags/;/
+
+" Annoying temporary files
+set backupdir=/tmp//,.
+set directory=/tmp//,.
+if v:version >= 703
+  set undodir=/tmp//,.
+endif
+
+" set complete=.,w,b,u,t
+set complete-=i
+
+" mouse
+set ttymouse=xterm2
+set mouse=a
+
+" 80 chars/line
+set textwidth=0
+if exists('&colorcolumn')
+  set colorcolumn=80
+  highlight ColorColumn guibg=#2b2b2b
+  highlight ColorColumn ctermbg=24
+  "let &colorcolumn=join(range(81,999),",")
+endif
+
+" Keep the cursor on the same column
+set nostartofline
+
+"" Movement in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-^> <C-o><C-^>
+
+
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+
+""""""""""""""""""""""""
+" Moving aroung, tabs, windows and buffers
+""""""""""""""""""""""""
+map j gj
+map k gk
+
+map <silent> <leader><cr> :noh<cr>
+
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>h <C-W>h
+map <leader>l <C-W>l 
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\   exe "normal! g`\"" |
+\ endif
+
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
+map <A-h> :cp<cr>
+map <A-l> :cn<cr>
+
+nmap <F3> :make<cr>
+nmap <F4> :make maintainer-clean<cr>
+highlight FoldColumn guifg=White guibg=White
+highlight Folded guifg=#ffc3c3 guibg=#2d2d2d
+
+:command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>

@@ -1,0 +1,36 @@
+= Do 21. Mai = 
+
+= 1030h=
+Sammelgebäude - warten auf Mittagessen. SAL war nur Übung heute. Wir haben
+Aufgaben für Flüsse (Ford Fulkerson) bzw. die Erweiterung (Edmond Karp) ge-
+rechnet.
+
+= 1200h=
+Vorlesung MST - Vorgehen und Tätigkeiten in einem Softwareprojekt
+
+= 1230h=
+Nach einigen Vorgehensmodellen, die sich nicht etabliert haben sind wir nun
+bei den Agilen Methode 
+
+= 1306h=
+Scrum Rollen - Diskussion von Erfahrungen in Scrum
+
+= 1800h=
+Suche neuen vimartigen, leichtgewichtigen Browser da dwb offensichtlich 
+nicht mehr aktiv entwickelt wird.
+
+= 1830h=
+konfiguriere uzbl mit dem TLS Zertifikatsproblem. In der Konfigurationsdatei
+wurde ich gerade fündig. Ich muss den Ordner für die Zertifikate ändern, da
+diese wohl in Fedora unter einem anderen Ordner gespeichert werden.
+
+= 1900h=
+bin jetzt wieder bei Firefox + Pentadactyl gelandet. Das scheint nen recht
+gutes Extension zu sein und läuft wie geschmiert. Bin gespannt
+
+= 1930h=
+Arbeite nun erstmal an Mensa weiter
+
+= 2000h=
+Hab jetzt meine Unterlagen fürs Studium eingeordnet. Der Stoffumfang ist recht
+überschaubar.
