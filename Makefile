@@ -15,7 +15,8 @@ all: mutt vim offlineimap dwb bspwm sxhkd khal ledger wiki personal
 
 .PHONY: mutt
 mutt:
-	cp -rf $(MUTTDIR) ./mutt/
+	cp -rf $(MUTTDIR) . 
+	mv .mutt mutt
 	cp $(MUTTRC) muttrc
 
 vim:
